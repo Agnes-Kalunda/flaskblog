@@ -1,4 +1,9 @@
 .dropdown-menu {
     margin-left: 25%;
     width:15%;
+
+}
+
+.bg-dark{
+    background-color: #1C2331;
 }
