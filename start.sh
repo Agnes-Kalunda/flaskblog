@@ -1,9 +1,9 @@
-export SECRET_KEY=
-export APP_SETTINGS="config.DevelopmentConfig"
+export SECRET_KEY='aggie1234'
+# export APP_SETTINGS="config.DevelopmentConfig"
 
- export DATABASE_URL=''
+#  export DATABASE_URL='postgresql+psycopg2://moringa:access@localhost/blog'
 
-python3 manage.py test
+python3 manage.py 
 # python3 manage.py db migrate -m "redo migrations"
 # python manage.py db migrate -m "Deployment"
 # python manage.py db upgrade
