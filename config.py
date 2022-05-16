@@ -1,31 +1,29 @@
 import os
-basedir = os.path.abspath(os.path.dirname(__file__))
-# base dir = os.path.returns an absolute path (os.path.returns directory name)
-class Config(object):
-     # DEBUG = True   
-     DEBUG = False
-     TESTING = False
-     QUOTES_API = 'http://quotes.stormconsultancy.co.uk/random.json'
-     SECRET_KEY = ''
-    
-     UPLOADED_PHOTOS_DEST='app/static/photos'
-    
-     
-class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-class StagingConfig(Config):
-    DEVELOPMENT = True
-    DEBUG = True
-class DevelopmentConfig(Config):
-    DEVELOPMENT = True
-    DEBUG = True
-    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://moringa:access@localhost/blog"
 
 
-class TestingConfig(Config):
-    TESTING = True
+class Config:
+    """
+    General parent configuration parent class
+    """
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:access@localhost/blog'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    UPLOADED_PHOTOS_DEST = 'app/static/photos'
+    SIMPLEMDE_JS_IIFE = True
+    SIMPLEMDE_USE_CDN = True
+    @staticmethod
+    def init_app(app):
+        pass
+class ProdConfig(Config):
+   
+    # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL").replace("://", "ql://", 1) 
+    DEBUG= True
+
+
+class DevConfig(Config):
+    
+    DEBUG = True
 config_options = {
-'test':TestingConfig,
-'production':ProductionConfig,
-'development': DevelopmentConfig
+    'development': DevConfig,
+    'production': ProdConfig,
 }
