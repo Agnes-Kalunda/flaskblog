@@ -42,5 +42,4 @@
 4. Bootstrap
 5. Css
 ### License
-*MIT*
-Copyright (c) 2019 **Agnes-kalunda **
+
