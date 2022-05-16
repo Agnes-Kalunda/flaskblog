@@ -8,6 +8,7 @@ class User(UserMixin,db.Model):
     secondname = db.Column(db.String(255),nullable=False, unique=True)
     username = db.Column(db.String(255),nullable=False, unique=True)
     email = db.Column(db.String(255), nullable =False,unique=True)
+    profile_img = db.Column(db.String(255))
     password = db.Column(db.String(255),nullable = False)
 
     def save(self):
@@ -16,17 +17,15 @@ class User(UserMixin,db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
-
     def set_password(self,password):
         password_hash = generate_password_hash(password)
         self.password = password_hash
-
+        
     def check_password(self, password):
         return check_password_hash(self.password,password)
-
+    
     def __repr__(self):
         return "User:%s"%str(self.username)
-
 @login_manager.user_loader
 def user_loader(user_id):
     return User.query.get(user_id)
