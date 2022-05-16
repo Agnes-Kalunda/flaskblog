@@ -28,15 +28,11 @@ class User(UserMixin,db.Model):
     
     def __repr__(self):
         return "User:%s"%str(self.username)
-
-
-
-
 class Post(db.Model):
     __tablename__= 'posts'
     id = db.Column(db.Integer,primary_key= True)
     title = db.Column(db.String(255),nullable=False)
-    content= db.Column(db.String(1500),nullable=False)
+    content= db.Column(db.Text,nullable=False)
     author = db.Column(db.String(255),nullable=False)
     category = db.Column(db.String(255),nullable=False)
     date_posted = db.Column(db.DateTime, default = datetime.utcnow)   
@@ -48,26 +44,30 @@ class Post(db.Model):
     def delete_post(self):
         db.session.delete(self)
         db.session.commit()
-
+    
     def __repr__(self):
         return "Post:%s"%str(self.title)
-
 class Comment(db.Model):
     __tablename__ = 'comments'
-
     id = db.Column(db.Integer, primary_key = True)
-    name =  db.Column(db.String(255),nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable =False,unique=True)
-    content = db.Column(db.String(255))          
+    name =  db.Column(db.String(255),nullable=False)
+    email = db.Column(db.String(255), nullable =False)
+    content = db.Column(db.String(1000) )          
     date_posted = db.Column(db.DateTime, default = datetime.utcnow)    
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
-
     def save_comment(self):
         db.session.add(self)
         db.session.commit()
     def delete_comment(self):
         db.session.delete(self)
         db.session.commit()
+class Quotes:
+  def __init__ (self,author,quote,permalink):
+    self.author = author
+    self.quote = quote
+    self.permalink = permalinkdef
+
+
 
 @login_manager.user_loader
 def user_loader(user_id):

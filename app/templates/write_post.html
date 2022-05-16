@@ -8,20 +8,26 @@
                         <h5 class="card-header pink darken-4 white-text text-center py-4">
                             <strong>Create a Post</strong>
                         </h5>
-                    
+                        {% if error %}
+                        <div class="alert alert-danger">
+                            {{error}}
+                        </div>
+                        {%endif%}
+
+
                         <!--Card content-->
                         <div class="card-body px-lg-5 pt-0">
-
+                    
                             <!-- Form -->
                             <form class="text-center" style="color: #757575;" action='/write_post/new' method='POST'>
-
+                    
                                 <!-- Name -->
                                 <div class="md-form mt-3">
                                     <input type="text" id="materialContactFormName" class="form-control" name = "title">
                                     <label for="materialContactFormName" >Title</label>
                                 </div>
-
-
+                    
+                                
                                 <!-- <span>Category</span>
                                 <select class="mdb-select">
                                     <option value="" disabled>Choose option</option>
@@ -34,18 +40,12 @@
                                 <input type="text" id="materialContactFormName" class="form-control" name = "category">
                                 <label for="materialContactFormName" >Category</label>
                             </div>
-
-
-
-
+            
                                 <div class="md-form">
                                     <textarea id="materialContactFormMessage" class="form-control md-textarea" rows="5" name ="content" placeholder="write post ..."></textarea>
-
+                                   
                                 </div>
-                    
-                                
-                    
-                                <!-- Send button -->
+                
                                 <button class="btn  btn-rounded btn-block z-depth-0 my-4 waves-effect pink darken-4" type="submit">Post</button>
                     
                             </form>
